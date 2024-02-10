@@ -3,7 +3,7 @@ import { auth,db,storage} from "../util/Firebase"
 import { useState } from "react";
 import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const avtar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI3UGUnq-zn46XlfZxH1Y7MAYDaCfnQwvDjjT3iPH4TA&s";
 
 const Register = () => {
@@ -42,7 +42,7 @@ const Register = () => {
                      photoURL: downloadURL,
                   });
                   await setDoc(doc(db,"userChats",res.user.uid),{})
-                  navigate("/home");
+                  navigate("/");
                });
             }
          );
@@ -69,7 +69,7 @@ const Register = () => {
                   </label>
                   <button className="bg-indigo-500 text-white py-3 rounded-lg text-lg">Register</button>
                   {error && <span>{error}</span>}
-                  <p className="cursor-pointer" onClick={navigate("/login")}>Already have an account? Login</p>
+                 <Link to='/login'> <p className="cursor-pointer" >Already have an account? Login</p></Link>
                </form>
             </div>
          </div>
